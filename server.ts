@@ -13,8 +13,23 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// @ts-ignore
+let _filename = '';
+try {
+  // @ts-ignore
+  _filename = __filename;
+} catch {
+  _filename = fileURLToPath(import.meta.url);
+}
+
+// @ts-ignore
+let _dirname = '';
+try {
+  // @ts-ignore
+  _dirname = __dirname;
+} catch {
+  _dirname = path.dirname(_filename);
+}
 
 async function startServer() {
   const app = express();
